@@ -102,6 +102,7 @@
   border: none;
   height: 24px;
   width: 100%;
+  caret-color: var(--color-bright-blue);
 }
 
 .task-enter:focus-visible {
@@ -131,6 +132,12 @@
   aspect-ratio: 1;
   border-radius: 50%;
   border: 1px solid var(--color-lightest-grayish-blue);
+  cursor: pointer;
+}
+
+.task-icon:active,
+.task-icon:hover {
+  border-color: var(--color-darkest-grayish-blue);
 }
 
 .task-main {
@@ -148,6 +155,12 @@
 
 .clear-completed {
   text-transform: capitalize;
+  cursor: pointer;
+}
+
+.clear-completed:active,
+.clear-completed:hover {
+  color: var(--color-darkest-grayish-blue);
 }
 
 .task {
@@ -158,6 +171,7 @@
 
 .task-text {
   font-size: 0.6rem;
+  cursor: pointer;
 }
 
 .list-controls {
@@ -174,10 +188,20 @@
   text-transform: capitalize;
   color: var(--color-dark-grayish-blue);
   font-weight: 700;
+  cursor: pointer;
 }
 
-.selected-option {
+.list-control:active,
+.list-control:hover {
+  color: var(--color-darkest-grayish-blue);
+}
+
+.list-control.selected-option {
   color: var(--color-bright-blue);
+}
+
+.close-icon {
+  cursor: pointer;
 }
 
 .close-icon img {
@@ -221,6 +245,7 @@
   aspect-ratio: 1;
   background-image: url('assets/images/icon-moon.svg');
   background-size: contain;
+  cursor: pointer;
 }
 
 .todo-list {
@@ -231,8 +256,10 @@
 @media (min-width: 520px) {
   .list-controls {
     position: relative;
+    width: fit-content;
     background-color: transparent;
     top: -65px;
+    left: 120px;
   }
 
   .container-image {
@@ -279,6 +306,20 @@
 
   .task-icon {
     border-color: var(--color-darkest-grayish-blue-2);
+  }
+
+  .list-control:active,
+  .list-control:hover {
+    color: var(--color-light-grayish-blue-hover);
+  }
+
+  .clear-completed:active,
+  .clear-completed:hover {
+    color: var(--color-light-grayish-blue-hover);
+  }
+
+  .list-control.selected-option {
+    color: var(--color-bright-blue);
   }
 }
 
