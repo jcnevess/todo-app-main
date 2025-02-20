@@ -239,4 +239,56 @@
     background-image: url('assets/images/bg-desktop-light.jpg');
   }
 }
+
+@media (prefers-color-scheme: dark) {
+  .container-image {
+    background-image: url('assets/images/bg-mobile-dark.jpg');
+  }
+
+  .mode-icon {
+    background-image: url('assets/images/icon-sun.svg');
+  }
+
+  .outer-container {
+    background-color: var(--color-dark-blue);
+  }
+
+  .container-footer {
+    color: var(--color-darkest-grayish-blue);
+  }
+
+  .content-box {
+    background-color: var(--color-dark-dessat-blue);
+  }
+
+  .task-enter {
+    background-color: var(--color-dark-dessat-blue);
+  }
+
+  .task-text {
+    color: var(--color-light-grayish-blue);
+  }
+
+  .task-completed > .task-main > .task-text {
+    color: var(--color-dark-grayish-blue);
+  }
+
+  .task {
+    border-color: var(--color-darkest-grayish-blue-2);
+  }
+
+  .task-icon {
+    border-color: var(--color-darkest-grayish-blue-2);
+  }
+}
+
+@media (prefers-color-scheme: dark) and (min-width: 520px) {
+  .container-image {
+    background-image: url('assets/images/bg-desktop-dark.jpg');
+  }
+
+  .list-controls {
+    background-color: transparent;
+  }
+}
 </style>
