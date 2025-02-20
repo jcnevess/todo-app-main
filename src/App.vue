@@ -67,6 +67,8 @@
   gap: 2rem;
   z-index: 1;
   position: relative;
+  max-width: 465px;
+  margin: auto;
 }
 
 .container-main {
@@ -203,6 +205,8 @@
   width: 100%;
   background-image: url('assets/images/bg-mobile-light.jpg');
   background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
   height: 35dvh;
 }
 
@@ -222,5 +226,17 @@
 .todo-list {
   border-radius: 5px;
   overflow: hidden;
+}
+
+@media (min-width: 520px) {
+  .list-controls {
+    position: relative;
+    background-color: transparent;
+    top: -65px;
+  }
+
+  .container-image {
+    background-image: url('assets/images/bg-desktop-light.jpg');
+  }
 }
 </style>
