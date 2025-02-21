@@ -1,6 +1,33 @@
 <script setup>
+import { ref } from 'vue'
 import TaskEntryComponent from './components/TaskEntryComponent.vue'
 import TaskListComponent from './components/TaskListComponent.vue'
+
+const tasks = ref([])
+const id = ref(1)
+
+function addTask(taskText) {
+  const newTask = {
+    id: id.value,
+    text: taskText,
+    completed: false,
+  }
+  tasks.value = [newTask, ...tasks.value]
+  id.value = id.value + 1
+}
+
+function deleteTask(id) {
+  tasks.value = tasks.value.filter((task) => task.id !== id)
+}
+
+function toggleCompleteTask(id) {
+  tasks.value = tasks.value.map((task) => {
+    return {
+      ...task,
+      completed: task.id === id ? !task.completed : task.completed,
+    }
+  })
+}
 </script>
 
 <template>
@@ -12,8 +39,12 @@ import TaskListComponent from './components/TaskListComponent.vue'
         <div class="mode-icon"></div>
       </div>
       <div class="container-main">
-        <TaskEntryComponent></TaskEntryComponent>
-        <TaskListComponent></TaskListComponent>
+        <TaskEntryComponent @add-task="addTask"></TaskEntryComponent>
+        <TaskListComponent
+          :tasks
+          @delete-task="deleteTask"
+          @toggle-complete-task="toggleCompleteTask"
+        ></TaskListComponent>
         <div class="list-controls content-box">
           <div class="controls-container">
             <div class="list-control selected-option">all</div>

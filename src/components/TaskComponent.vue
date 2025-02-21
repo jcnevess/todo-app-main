@@ -1,13 +1,16 @@
-<script setup></script>
+<script setup>
+const { task } = defineProps(['task'])
+const emit = defineEmits(['toggleCompleteTask', 'deleteTask'])
+</script>
 
 <template>
-  <div class="task task-completed content-box">
+  <div class="task content-box" :class="{ 'task-completed': task.completed }">
     <div class="task-main">
-      <div class="task-icon"></div>
-      <div class="task-text">Read for 1 hour</div>
+      <div class="task-icon" role="button" @click="emit('toggleCompleteTask', task.id)"></div>
+      <div class="task-text" @click="emit('toggleCompleteTask', task.id)">{{ task.text }}</div>
     </div>
-    <div class="close-icon">
-      <img src="@/assets/images/icon-cross.svg" alt="close" />
+    <div class="delete-icon" role="button" @click="emit('deleteTask', task.id)">
+      <img src="@/assets/images/icon-cross.svg" alt="delete" />
     </div>
   </div>
 </template>
@@ -66,11 +69,11 @@
   cursor: pointer;
 }
 
-.close-icon {
+.delete-icon {
   cursor: pointer;
 }
 
-.close-icon img {
+.delete-icon img {
   width: 15px;
   aspect-ratio: 1;
   border-radius: 50%;

@@ -1,14 +1,23 @@
 <script setup>
 import TaskComponent from './TaskComponent.vue'
+
+const { tasks } = defineProps(['tasks'])
+const emit = defineEmits(['toggleCompleteTask', 'deleteTask'])
 </script>
 
 <template>
   <div class="todo-list">
     <div class="tasks">
-      <TaskComponent></TaskComponent>
+      <TaskComponent
+        v-for="task in tasks"
+        :key="task.id"
+        :task
+        @delete-task="emit('deleteTask', task.id)"
+        @toggle-complete-task="emit('toggleCompleteTask', task.id)"
+      ></TaskComponent>
     </div>
     <div class="list-info content-box">
-      <div class="items-left">5 items left</div>
+      <div class="items-left">{{ tasks.length }} items left</div>
       <div class="clear-completed">clear completed</div>
     </div>
   </div>

@@ -1,12 +1,30 @@
-<script setup></script>
+<script setup>
+import { ref } from 'vue'
+
+const emit = defineEmits(['addTask'])
+
+const newTaskText = ref('')
+
+function handleSubmit() {
+  emit('addTask', newTaskText.value)
+  newTaskText.value = ''
+}
+</script>
 
 <template>
-  <div class="entry-box content-box">
+  <form class="entry-box content-box" @submit.prevent="handleSubmit">
     <label for="enter-task">
       <div class="task-icon" aria-label="Add Task"></div>
     </label>
-    <input class="task-enter" type="text" placeholder="Create a new todo..." id="enter-task" />
-  </div>
+    <input
+      id="enter-task"
+      class="task-enter"
+      type="text"
+      placeholder="Create a new todo..."
+      autocomplete="false"
+      v-model="newTaskText"
+    />
+  </form>
 </template>
 
 <style scoped>
