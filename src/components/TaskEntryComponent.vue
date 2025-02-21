@@ -2,8 +2,10 @@
 
 <template>
   <div class="entry-box content-box">
-    <div class="task-icon"></div>
-    <input class="task-enter" type="text" placeholder="Create a new todo..." />
+    <label for="enter-task">
+      <div class="task-icon" aria-label="Add Task"></div>
+    </label>
+    <input class="task-enter" type="text" placeholder="Create a new todo..." id="enter-task" />
   </div>
 </template>
 
@@ -29,11 +31,6 @@
   border-radius: 50%;
   border: 1px solid var(--color-lightest-grayish-blue);
   cursor: pointer;
-}
-
-.task-icon:active,
-.task-icon:hover {
-  border-color: var(--color-darkest-grayish-blue);
 }
 
 .task-enter {
