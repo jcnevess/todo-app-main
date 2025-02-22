@@ -28,6 +28,10 @@ function toggleCompleteTask(id) {
     }
   })
 }
+
+function deleteCompleted() {
+  tasks.value = tasks.value.filter((task) => !task.completed)
+}
 </script>
 
 <template>
@@ -44,14 +48,8 @@ function toggleCompleteTask(id) {
           :tasks
           @delete-task="deleteTask"
           @toggle-complete-task="toggleCompleteTask"
+          @delete-completed="deleteCompleted"
         ></TaskListComponent>
-        <div class="list-controls content-box">
-          <div class="controls-container">
-            <div class="list-control selected-option">all</div>
-            <div class="list-control">active</div>
-            <div class="list-control">completed</div>
-          </div>
-        </div>
       </div>
       <div class="container-footer">Drag and drop to reorder list</div>
     </main>
@@ -109,32 +107,6 @@ function toggleCompleteTask(id) {
   height: 48px;
 }
 
-.list-controls {
-  justify-content: center;
-  border-radius: 5px;
-}
-
-.controls-container {
-  display: flex;
-  gap: 1rem;
-}
-
-.list-control {
-  text-transform: capitalize;
-  color: var(--color-dark-grayish-blue);
-  font-weight: 700;
-  cursor: pointer;
-}
-
-.list-control:active,
-.list-control:hover {
-  color: var(--color-darkest-grayish-blue);
-}
-
-.list-control.selected-option {
-  color: var(--color-bright-blue);
-}
-
 .container-image {
   position: absolute;
   top: 0;
@@ -162,14 +134,6 @@ function toggleCompleteTask(id) {
 }
 
 @media (min-width: 520px) {
-  .list-controls {
-    position: relative;
-    width: fit-content;
-    background-color: transparent;
-    top: -65px;
-    left: 120px;
-  }
-
   .container-image {
     background-image: url('@/assets/images/bg-desktop-light.jpg');
   }
@@ -195,24 +159,11 @@ function toggleCompleteTask(id) {
   .container-footer {
     color: var(--color-darkest-grayish-blue);
   }
-
-  .list-control:active,
-  .list-control:hover {
-    color: var(--color-light-grayish-blue-hover);
-  }
-
-  .list-control.selected-option {
-    color: var(--color-bright-blue);
-  }
 }
 
 @media (prefers-color-scheme: dark) and (min-width: 520px) {
   .container-image {
     background-image: url('@/assets/images/bg-desktop-dark.jpg');
-  }
-
-  .list-controls {
-    background-color: transparent;
   }
 }
 </style>
