@@ -20,6 +20,7 @@ const emit = defineEmits(['toggleCompleteTask', 'deleteTask'])
   border-bottom: 1px solid var(--color-light-grayish-blue);
   display: flex;
   justify-content: space-between;
+  cursor: grab;
 }
 
 .task-completed > .task-main > .task-icon {
@@ -70,6 +71,12 @@ const emit = defineEmits(['toggleCompleteTask', 'deleteTask'])
 }
 
 .delete-icon {
+  visibility: hidden;
+}
+
+.task:active .delete-icon,
+.task:hover .delete-icon {
+  visibility: visible;
   cursor: pointer;
 }
 
