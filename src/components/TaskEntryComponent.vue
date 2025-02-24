@@ -71,7 +71,7 @@ function handleSubmit() {
   font-family: 'Josefin Sans', sans-serif;
 }
 
-@media (prefers-color-scheme: dark) {
+.dark-theme {
   .content-box {
     background-color: var(--color-dark-dessat-blue);
   }
@@ -81,6 +81,7 @@ function handleSubmit() {
   }
 
   .task-enter {
+    color: var(--color-light-grayish-blue);
     background-color: var(--color-dark-dessat-blue);
   }
 }

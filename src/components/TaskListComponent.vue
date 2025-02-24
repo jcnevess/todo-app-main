@@ -135,17 +135,7 @@ function isVisible(task, visibility) {
   color: var(--color-bright-blue);
 }
 
-@media (min-width: 520px) {
-  .list-controls {
-    position: relative;
-    width: fit-content;
-    background-color: transparent;
-    top: -65px;
-    left: 120px;
-  }
-}
-
-@media (prefers-color-scheme: dark) {
+.dark-theme {
   .content-box {
     background-color: var(--color-dark-dessat-blue);
   }
@@ -165,9 +155,19 @@ function isVisible(task, visibility) {
   }
 }
 
-@media (prefers-color-scheme: dark) and (min-width: 520px) {
+@media (min-width: 520px) {
   .list-controls {
+    position: relative;
+    width: fit-content;
     background-color: transparent;
+    top: -65px;
+    left: 120px;
+  }
+
+  .dark-theme {
+    .list-controls {
+      background-color: transparent;
+    }
   }
 }
 </style>

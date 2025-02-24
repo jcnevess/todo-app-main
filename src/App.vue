@@ -1,10 +1,19 @@
 <script setup>
-import { ref } from 'vue'
+import { ref, watch } from 'vue'
 import TaskEntryComponent from './components/TaskEntryComponent.vue'
 import TaskListComponent from './components/TaskListComponent.vue'
 
 const tasks = ref([])
 const id = ref(1)
+const darkMode = ref(false)
+
+watch(darkMode, (isDark) => {
+  if (isDark) {
+    document.documentElement.classList.add('dark-theme')
+  } else {
+    document.documentElement.classList.remove('dark-theme')
+  }
+})
 
 function addTask(taskText) {
   const newTask = {
@@ -32,6 +41,10 @@ function toggleCompleteTask(id) {
 function deleteCompleted() {
   tasks.value = tasks.value.filter((task) => !task.completed)
 }
+
+function toggleDarkMode() {
+  darkMode.value = !darkMode.value
+}
 </script>
 
 <template>
@@ -40,7 +53,7 @@ function deleteCompleted() {
     <main class="inner-container">
       <div class="container-header">
         <h1 class="title">todo</h1>
-        <div class="mode-icon"></div>
+        <div class="mode-icon" role="button" @click="toggleDarkMode"></div>
       </div>
       <div class="container-main">
         <TaskEntryComponent @add-task="addTask"></TaskEntryComponent>
@@ -133,13 +146,7 @@ function deleteCompleted() {
   cursor: pointer;
 }
 
-@media (min-width: 520px) {
-  .container-image {
-    background-image: url('@/assets/images/bg-desktop-light.jpg');
-  }
-}
-
-@media (prefers-color-scheme: dark) {
+.dark-theme {
   .content-box {
     background-color: var(--color-dark-dessat-blue);
   }
@@ -161,9 +168,15 @@ function deleteCompleted() {
   }
 }
 
-@media (prefers-color-scheme: dark) and (min-width: 520px) {
+@media (min-width: 520px) {
   .container-image {
-    background-image: url('@/assets/images/bg-desktop-dark.jpg');
+    background-image: url('@/assets/images/bg-desktop-light.jpg');
+  }
+
+  .dark-theme {
+    .container-image {
+      background-image: url('@/assets/images/bg-desktop-dark.jpg');
+    }
   }
 }
 </style>
