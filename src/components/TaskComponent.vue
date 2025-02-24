@@ -79,7 +79,7 @@ const emit = defineEmits(['toggleCompleteTask', 'deleteTask'])
   border-radius: 50%;
 }
 
-.dark-theme {
+[data-theme='dark'] {
   .task {
     border-color: var(--color-darkest-grayish-blue-2);
   }

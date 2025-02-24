@@ -135,7 +135,7 @@ function isVisible(task, visibility) {
   color: var(--color-bright-blue);
 }
 
-.dark-theme {
+[data-theme='dark'] {
   .content-box {
     background-color: var(--color-dark-dessat-blue);
   }
@@ -164,7 +164,7 @@ function isVisible(task, visibility) {
     left: 120px;
   }
 
-  .dark-theme {
+  [data-theme='dark'] {
     .list-controls {
       background-color: transparent;
     }

@@ -71,7 +71,7 @@ function handleSubmit() {
   font-family: 'Josefin Sans', sans-serif;
 }
 
-.dark-theme {
+[data-theme='dark'] {
   .content-box {
     background-color: var(--color-dark-dessat-blue);
   }

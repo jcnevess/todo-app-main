@@ -9,9 +9,9 @@ const darkMode = ref(false)
 
 watch(darkMode, (isDark) => {
   if (isDark) {
-    document.documentElement.classList.add('dark-theme')
+    document.documentElement.setAttribute('data-theme', 'dark')
   } else {
-    document.documentElement.classList.remove('dark-theme')
+    document.documentElement.setAttribute('data-theme', 'light')
   }
 })
 
@@ -146,7 +146,7 @@ function toggleDarkMode() {
   cursor: pointer;
 }
 
-.dark-theme {
+[data-theme='dark'] {
   .content-box {
     background-color: var(--color-dark-dessat-blue);
   }
@@ -173,7 +173,7 @@ function toggleDarkMode() {
     background-image: url('@/assets/images/bg-desktop-light.jpg');
   }
 
-  .dark-theme {
+  [data-theme='dark'] {
     .container-image {
       background-image: url('@/assets/images/bg-desktop-dark.jpg');
     }
