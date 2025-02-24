@@ -6,6 +6,7 @@ import TaskListComponent from './components/TaskListComponent.vue'
 const tasks = ref([])
 const id = ref(1)
 const darkMode = ref(false)
+const draggedTaskId = ref(null)
 
 watch(darkMode, (isDark) => {
   if (isDark) {
@@ -45,6 +46,20 @@ function deleteCompleted() {
 function toggleDarkMode() {
   darkMode.value = !darkMode.value
 }
+
+function dragTask(taskId) {
+  draggedTaskId.value = taskId
+}
+
+function dropTask(targetId) {
+  const cutIndex = tasks.value.findIndex((task) => task.id === targetId)
+  const draggedTask = tasks.value.find((task) => task.id === draggedTaskId.value)
+  tasks.value = tasks.value
+    .slice(0, cutIndex)
+    .filter((task) => task.id !== draggedTask.id)
+    .concat([draggedTask])
+    .concat(tasks.value.slice(cutIndex).filter((task) => task.id !== draggedTask.id))
+}
 </script>
 
 <template>
@@ -62,6 +77,8 @@ function toggleDarkMode() {
           @delete-task="deleteTask"
           @toggle-complete-task="toggleCompleteTask"
           @delete-completed="deleteCompleted"
+          @drag-task="dragTask"
+          @drop-task="dropTask"
         ></TaskListComponent>
       </div>
       <div class="container-footer">Drag and drop to reorder list</div>

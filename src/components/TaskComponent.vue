@@ -4,7 +4,7 @@ const emit = defineEmits(['toggleCompleteTask', 'deleteTask'])
 </script>
 
 <template>
-  <div class="task content-box" :class="{ 'task-completed': task.completed }">
+  <div class="task content-box" :class="{ 'task-completed': task.completed }" draggable="true">
     <div class="task-main">
       <div class="task-icon" role="button" @click="emit('toggleCompleteTask', task.id)"></div>
       <div class="task-text" @click="emit('toggleCompleteTask', task.id)">{{ task.text }}</div>

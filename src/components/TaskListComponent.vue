@@ -7,7 +7,13 @@ const SHOW_ACTIVE_TASKS = 'active'
 const SHOW_COMPLETED_TASKS = 'completed'
 
 const { tasks } = defineProps(['tasks'])
-const emit = defineEmits(['toggleCompleteTask', 'deleteTask', 'deleteCompleted'])
+const emit = defineEmits([
+  'toggleCompleteTask',
+  'deleteTask',
+  'deleteCompleted',
+  'dragTask',
+  'dropTask',
+])
 
 const visibilityChoice = ref(SHOW_ALL_TASKS)
 
@@ -27,6 +33,12 @@ function isVisible(task, visibility) {
     return true
   }
 }
+
+function dragStart(evt, taskId) {
+  evt.dataTransfer.dropEffect = 'move'
+  evt.dataTransfer.effectAllowed = 'move'
+  emit('dragTask', taskId)
+}
 </script>
 
 <template>
@@ -38,6 +50,10 @@ function isVisible(task, visibility) {
         :task
         @delete-task="emit('deleteTask', task.id)"
         @toggle-complete-task="emit('toggleCompleteTask', task.id)"
+        @dragstart="dragStart($event, task.id)"
+        @dragover.prevent
+        @dragenter.prevent
+        @drop="emit('dropTask', task.id)"
       ></TaskComponent>
     </div>
     <div class="list-info content-box">
