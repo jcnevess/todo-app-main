@@ -23,6 +23,7 @@ function handleSubmit() {
       placeholder="Create a new todo..."
       autocomplete="false"
       v-model="newTaskText"
+      required="true"
     />
   </form>
 </template>
