@@ -57,7 +57,9 @@ function dragStart(evt, taskId) {
       ></TaskComponent>
     </div>
     <div class="list-info content-box">
-      <div class="items-left">{{ visibleTasks.length }} items left</div>
+      <div class="items-left">
+        {{ visibleTasks.filter((task) => !task.completed).length }} items left
+      </div>
       <div class="clear-completed" @click="emit('deleteCompleted')">clear completed</div>
     </div>
   </div>
